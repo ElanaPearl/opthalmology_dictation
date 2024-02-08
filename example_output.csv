@@ -1,0 +1,5 @@
+,reference,hypothesis,WER
+0,here is a sentence with a deletion,here is a sentence with a,0.14285714285714285
+1,here is a sentence with an insertion,here is a sentence with an an insertion,0.14285714285714285
+2,here is a sentence with a substitution,here is a sentence with a subsubtitution,0.14285714285714285
+3,here is a sentence with a mix of them all,here is an sentence with a mix of of them,0.3
