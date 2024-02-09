@@ -1,0 +1,7 @@
+# files to ignore
+whisper_function.py
+EarningsCall.wav
+
+*:Zone.Identifier
+
+__pycache__
