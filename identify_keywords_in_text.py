@@ -21,7 +21,7 @@ def find_top_n_words_in_document(
     tf_idf_scores = vectorizer.transform(document)
 
     tf_idf_per_word = pd.DataFrame(
-        tf_idf_scores.toarray(), columns=vectorizer.get_feature_names()
+        tf_idf_scores.toarray(), columns=vectorizer.get_feature_names_out()
     ).sum(axis=0)
 
     return tf_idf_per_word.nlargest(n).index.tolist()
