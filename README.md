@@ -8,6 +8,7 @@ conda activate optho
 ```
 
 ## Calculate Optos Fundus key-words using TF-IDF
+Note, this has already been run and the top 25 keywords have been calculated and saved at `data/keywords.txt`. These are the commands to run this pipeline:
 1) Download [MeDAL](https://arxiv.org/abs/2012.13978) data set from [HuggingFace](https://huggingface.co/datasets/medal/blob/main/data/pretrain_subset.zip). This dataset is a large medical text used for pre-training LLMs on medical data. This serves as the background distribution for medical terms that are not necessarily specific to Optos fundus. Note, this download requires 4G of memory.
 
 First download a 2G zip file of all the pretraining data for MeDAL
