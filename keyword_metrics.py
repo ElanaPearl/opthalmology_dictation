@@ -14,7 +14,7 @@ def calculate_keyword_error_rate(df: pd.DataFrame, keyword_list: list, verbose: 
            M = number of missing keywords
            N = total number of keywords
 
-    @pandas df: dataframe with columns ["reference", "hypothesis"], giving ground-truth sentences and their dictations
+    @param df: dataframe with columns ["reference", "hypothesis"], giving ground-truth sentences and their dictations
     @param keyword_list: list of keywords to track the error of in the data
     @param verbose: if True, prints further details
     @return: dataframe with F, M, and N values as well as the KER for each sentence and overall
@@ -32,7 +32,6 @@ def calculate_keyword_error_rate(df: pd.DataFrame, keyword_list: list, verbose: 
                                      hypothesis=row['hypothesis'])
 
         references = output.references
-        hypothesis = output.hypotheses
         alignment = output.alignments
 
         total_count = sum([w in keyword_set for w in references[0]])  # todo check list of list
@@ -40,7 +39,7 @@ def calculate_keyword_error_rate(df: pd.DataFrame, keyword_list: list, verbose: 
         incorrect_count = 0
 
         # for each set of chunks - if only parsing sentences, there should only be one set
-        for gt, hp, chunks in zip(references, hypothesis, alignment):
+        for gt, chunks in zip(references, alignment):
             if len(chunks) == 1 and chunks[0].type == "equal":  # fully correct dictation
                 continue
 
@@ -75,7 +74,7 @@ def calculate_keyword_error_rate(df: pd.DataFrame, keyword_list: list, verbose: 
         print(data_df.merge(keyword_counts_df.iloc[:-1, -1], left_index=True, right_index=True))
         print('\n')
 
-    print(f'Overall KER: {keyword_counts_df.loc['total', 'ker']}')
+    print(f'Overall KER: {keyword_counts_df.loc['total', 'KER']}')
 
     return keyword_counts_df
 
@@ -83,12 +82,20 @@ def calculate_keyword_error_rate(df: pd.DataFrame, keyword_list: list, verbose: 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("input_file", help="input csv file", type=str)
+    parser.add_argument("-kw", "--keywords", nargs="+", help="keywords in a list")
+    parser.add_argument("-kf", "--keyword_file", help="keyword file")
     parser.add_argument("-o", "--output_file", default="./output.csv", help="output csv file", type=str)
     parser.add_argument("--verbose", default=False, help="verbose output", action='store_true')
     args = parser.parse_args()
 
     input_df = pd.read_csv(args.input_file, index_col=0)
+    assert(args.keywords or args.keyword_file)
+    if args.keyword_file:
+        # this assumes the keyword file has all the words in one column
+        keyword_list = pd.read_csv(args.keyword_file, index_col=False, header=None).iloc[:, 0].values.tolist()
+    else:
+        keyword_list = args.keywords
 
-    results = calculate_keyword_error_rate(input_df, ['sentence', 'deletion', 'substitution'], verbose=args.verbose)
+    results = calculate_keyword_error_rate(input_df, keyword_list, verbose=args.verbose)
     results.to_csv(args.output_file, sep='\t')
 
