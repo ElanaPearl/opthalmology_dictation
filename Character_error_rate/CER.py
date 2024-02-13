@@ -37,7 +37,8 @@ def compute_cer(file_path):
         if num in predictions:
             cer = cer_metric.compute(references=[references[num]], predictions=[predictions[num]])
             cer_scores.append(cer)
-            # print(f'CER score for prediction {num}: {cer}')
+            # 
+            print(f'CER score for prediction {num}: {cer}')
             print(f'Character accuracy {num}: {1-cer}')
 
     # compute average wer score
