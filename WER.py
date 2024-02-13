@@ -26,8 +26,6 @@ def compute_wer(file_path):
             if label.startswith("prediction"):
                 predictions[number] = text
 
-    # print(references)
-    # print(predictions)
 
 
     wer_metric = load("wer")
