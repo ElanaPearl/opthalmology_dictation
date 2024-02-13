@@ -1,7 +1,7 @@
 reference_1 = "OD hazy media, hyperpigmented spot inferotemporal mid-periphery, lattice superotemporal with laser scars surrounding, nasal pigmentary degeneration OS oil, nerve perfused, macula attached, tortuous vessels temporal macula, retinectomy edges flat with few hemorrhages superonasal Interpretation: OD with myopic changes, OS attached following repair"
 prediction_1 = "OD, hazing media, hyperpigmented spot, and for temporal mid-perfury, lattice super temporal with laser scars surrounding nasal pigmentary degeneration OS, oil, nerve perfused, macula attached, tortuous vessels temporal macula, renecdomy edges, flat with few homages super nasal, interpretation OD with myopic changes OS attached following repair."
 reference_2 = "OD dilated and tortuous venules, irhs in macula, all 4 quads OS normal Interpretation: CRAO OD"
-prediction_1 = "OD dilated and torturous venules air h is in the macula all four quadrants OS normal interpretation CRIO OD."
+prediction_2 = "OD dilated and torturous venules air h is in the macula all four quadrants OS normal interpretation CRIO OD."
 reference_3 = "OD mas in the macula OS mas in the macula, peripapillary and perifoveal exudates, multiple peripheral irhs Interpretation: mild NPDR OD, severe NPDR OS"
 prediction_3 = "ODMAs in the macula OS, MAs in the macula, paripapillary and peripovial exidates multiple peripheral eye-raches, interpretation mild, and PDROD severe and PDROS."
 reference_4 = "OD emulsified oil, RD 7 to 11 with large break at 9 and pigmented lattice at 6, 7, 9, 10, 11 and 1 OS hazy media without view to the nerve, closed funnel with PVR Interpretation: RD status post repair OD, attached; closed funnel detachment OS"

@@ -1,7 +1,8 @@
 from evaluate import load
+import re
 
 # make 2 dictionaries to hold references and predictions
-def compute_wer(file_path):
+def compute_cer(file_path):
     # initialize dictionaries to hold references and predictions
     references = {}
     predictions = {}
@@ -19,6 +20,7 @@ def compute_wer(file_path):
 
             # strip leading and trailing white spaces
             text = text.strip().strip('"')
+            text = re.sub(r'[^\w\s]', ' ', text)
             
             # store the text in references or predictions dictionary 
             if label.startswith("reference"):
@@ -28,20 +30,21 @@ def compute_wer(file_path):
 
 
 
-    wer_metric = load("wer")
-    wer_scores = []
+    cer_metric = load("cer")
+    cer_scores = []
 
     for num in sorted(references.keys()):
         if num in predictions:
-            wer = wer_metric.compute(references=[references[num]], predictions=[predictions[num]])
-            wer_scores.append(wer)
-            print(f'WER score for prediction {num}: {wer}')
+            cer = cer_metric.compute(references=[references[num]], predictions=[predictions[num]])
+            cer_scores.append(cer)
+            # print(f'CER score for prediction {num}: {cer}')
+            print(f'Character accuracy {num}: {1-cer}')
 
     # compute average wer score
-    ave_wer_score = sum(wer_scores)/len(wer_scores)
-    print(f'average word error rate is: {ave_wer_score}')
+    ave_cer_score = sum(cer_scores)/len(cer_scores)
+    print(f'average character error rate is: {ave_cer_score}')
 
-compute_wer("references_predictions.txt")
+compute_cer("./Character_error_rate/references_predictions.txt")
 
 
 
